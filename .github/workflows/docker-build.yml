@@ -11,9 +11,9 @@ jobs:
     name: Push Docker image github repo
     runs-on: ubuntu-latest
     steps:
-    - id: read-docker-image-identifiers
-      name: Read Docker Image Identifiers
-      run: echo ::set-env name=IMAGE_REPOSITORY_OWNER::$(echo ${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]')
+      - id: read-docker-image-identifiers
+        name: Read Docker Image Identifiers
+        run: echo ::set-env name=IMAGE_REPOSITORY_OWNER::$(echo ${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]')
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
