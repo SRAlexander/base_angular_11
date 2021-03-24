@@ -11,6 +11,9 @@ jobs:
     name: Push Docker image github repo
     runs-on: ubuntu-latest
     steps:
+    - id: read-docker-image-identifiers
+      name: Read Docker Image Identifiers
+      run: echo ::set-env name=IMAGE_REPOSITORY_OWNER::$(echo ${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]')
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -36,4 +39,4 @@ jobs:
         with:
           push: true
           # tags: <org-name>/<repo-name>/<app-name>:${{ env.IMAGE_TAG }}
-          tags: ghcr.io/${{ github.repository_owner }}/ng11base:${{ env.IMAGE_TAG }}
+          tags: ghcr.io/${{ env.IMAGE_REPOSITORY_OWNER }}/ng11base:${{ env.IMAGE_TAG }}
